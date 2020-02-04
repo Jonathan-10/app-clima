@@ -29,17 +29,16 @@ class MainActivity : AppCompatActivity() {
         tvGrados = findViewById(R.id.tvGrados)
         tvEstatus = findViewById(R.id.tvEstatus)
 
-        val ciudad = intent.getStringExtra("idCiudad")
+        val Ciudad = intent.getStringExtra("com.example.clima.ciudades.Ciudad")
 
 
         if (Network.hayRed(this)) {
             //Ejecutar solicitud HTTP
-            try {
-                solicitudHTTPVolley("http://api.openweathermap.org/data/2.5/weather?id=" + ciudad + "&appid=ab82e98cbc36df41768c33aa5fed53b8&units=metric")
-            } catch (e: Exception) {
-                Log.e(TAG, e.message)
+           // try {
+                solicitudHTTPVolley("http://api.openweathermap.org/data/2.5/weather?id="+Ciudad+"&APPID=ab82e98cbc36df41768c33aa5fed53b8&units=metric&lang=es")
+            //} catch (e: Exception) {
+                //Log.d(TAG, e.message)
 
-            }
             //ab82e98cbc36df41768c33aa5fed53b8
             //ciudad de mexico 3530597
         } else {
@@ -67,39 +66,32 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "No se encuentra la informacion", Toast.LENGTH_SHORT).show()
     }
      */
+
+
     }
 
     private fun solicitudHTTPVolley(url: String) {
+        val queue = Volley.newRequestQueue(this)
 
-
-        try {
-            val queue = Volley.newRequestQueue(this)
-            val solicitud = StringRequest(Request.Method.GET, url, Response.Listener<String>
-            { response ->
+        val solicitud = StringRequest(
+            Request.Method.GET, url, Response.Listener<String> { response ->
                 try {
                     Log.d("solicitudHTTPVolley", response)
 
                     val gson = Gson()
                     val ciudad = gson.fromJson(response, Ciudad::class.java)
-                    tvCiudad!!.text = ciudad.name
-                    tvGrados!!.text = ciudad.main?.temp.toString() + "°"
-                    tvEstatus!!.text = ciudad.weather?.get(0)?.description
+                    tvCiudad?.text = ciudad.name
+                    tvGrados?.text = ciudad.main?.temp.toString() + "°"
+                    tvEstatus?.text = ciudad.weather?.get(0)?.description
 
                 } catch (e: Exception) {
-                    Log.e(TAG, e.message)
+
                 }
 
-            }, Response.ErrorListener { })
+            },
+            Response.ErrorListener { })
 
-            queue.add(solicitud)
-        } catch (e: Exception) {
-            Log.e(TAG, e.message)
-        }
+        queue.add(solicitud)
 
-
-    }
-
-    companion object {
-        const val TAG = "MainActivity"
     }
 }

@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 
 
+@Suppress("DEPRECATION")
 class Network {
 
     companion object {

@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
+
 
 class ciudades : AppCompatActivity() {
 
-    val TAG = "com.example.clima.ciudades.CIUDAD"
+    val TAG = "com.example.clima.ciudades.Ciudad"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,13 +20,13 @@ class ciudades : AppCompatActivity() {
 
         bMexico.setOnClickListener(View.OnClickListener {
            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("idCiudad", "3530597")
+            intent.putExtra(TAG, "3530597")
             startActivity(intent)
         })
 
         bBerlin.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("idCiudad", "2950159")
+            intent.putExtra(TAG, "2950159")
             startActivity(intent)
         })
 
