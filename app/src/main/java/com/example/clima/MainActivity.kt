@@ -1,13 +1,10 @@
 package com.example.clima
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
-import com.Ciudad
-import com.Network
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -29,45 +26,15 @@ class MainActivity : AppCompatActivity() {
         tvGrados = findViewById(R.id.tvGrados)
         tvEstatus = findViewById(R.id.tvEstatus)
 
-        val Ciudad = intent.getStringExtra("com.example.clima.ciudades.Ciudad")
+        val ciudad = intent.getStringExtra("com.example.clima.ciudades.CIUDAD")
 
 
         if (Network.hayRed(this)) {
-            //Ejecutar solicitud HTTP
-           // try {
-                solicitudHTTPVolley("http://api.openweathermap.org/data/2.5/weather?id="+Ciudad+"&APPID=ab82e98cbc36df41768c33aa5fed53b8&units=metric&lang=es")
-            //} catch (e: Exception) {
-                //Log.d(TAG, e.message)
-
-            //ab82e98cbc36df41768c33aa5fed53b8
-            //ciudad de mexico 3530597
+            solicitudHTTPVolley("https://api.openweathermap.org/data/2.5/weather?q=$ciudad&appid=2e645064b9b1397b268b754eeb2dcc5f&units=metric&lang=es")
         } else {
             //Mostrar mensaje Error
             Toast.makeText(this, "No hay Red", Toast.LENGTH_SHORT).show()
-
         }
-        /*
-    val ciudadmx = Ciudad("Ciudad de Mexico", grados = 15, estatus = "Soleado")
-    val ciudadBerlin = Ciudad("Ciudad de Berlin", grados = 30, estatus = "Cielo Despejado")
-
-    if (ciudad == "ciudad_mexico") {
-        //Mostrar informacion ciudadmx
-        tvCiudad?.text = ciudadmx.nombre
-        tvGrados?.text = ciudadmx.grados.toString() + "°"
-        tvEstatus?.text = ciudadmx.estatus
-
-    }else if (ciudad == "ciudad_berlin") {
-        //Mostrar informacion ciudadmx
-        tvCiudad?.text = ciudadBerlin.nombre
-        tvGrados?.text = ciudadBerlin.grados.toString() + "°"
-        tvEstatus?.text = ciudadBerlin.estatus
-
-    }else{
-        Toast.makeText(this, "No se encuentra la informacion", Toast.LENGTH_SHORT).show()
-    }
-     */
-
-
     }
 
     private fun solicitudHTTPVolley(url: String) {

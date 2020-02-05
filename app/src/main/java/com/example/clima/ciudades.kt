@@ -5,11 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import kotlinx.android.synthetic.main.activity_ciudades.*
 
 
 class ciudades : AppCompatActivity() {
 
-    val TAG = "com.example.clima.ciudades.Ciudad"
+    val TAG = "com.example.clima.ciudades.CIUDAD"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +30,12 @@ class ciudades : AppCompatActivity() {
             intent.putExtra(TAG, "2950159")
             startActivity(intent)
         })
+
+        buttonSearch.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(TAG, searchCiudadEditext.text.toString())
+            startActivity(intent)
+        }
 
     }
 }

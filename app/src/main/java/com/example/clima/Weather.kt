@@ -1,4 +1,4 @@
-package com
+package com.example.clima
 
 class Weather(description:String) {
     var description:String = ""

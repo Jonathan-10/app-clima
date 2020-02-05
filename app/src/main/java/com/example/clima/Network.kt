@@ -1,4 +1,4 @@
-package com
+package com.example.clima
 
 import android.content.Context
 import android.net.ConnectivityManager

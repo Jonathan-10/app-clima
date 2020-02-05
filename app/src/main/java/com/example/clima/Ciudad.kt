@@ -1,10 +1,10 @@
-package com
+package com.example.clima
 
-class Ciudad (name:String, weather:ArrayList<Weather>, main:Main){
+class Ciudad (name:String, weather:ArrayList<Weather>, main: Main){
 
     var name:String = ""
     var weather:ArrayList<Weather>? = null
-    var main:Main? = null
+    var main: Main? = null
 
     init {
         this.name = name
